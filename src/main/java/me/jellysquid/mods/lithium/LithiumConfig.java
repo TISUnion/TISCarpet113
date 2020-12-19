@@ -10,7 +10,7 @@ package me.jellysquid.mods.lithium;
 @SuppressWarnings("PointlessBooleanExpression")
 public class LithiumConfig
 {
-	private static final boolean LITHIUM_ENABLE = true;
+	private static final boolean LITHIUM_ENABLE = false;
 
 	public static final boolean ALLOC_ENTITY_TRACKER            = LITHIUM_ENABLE && true;
 //	public static final boolean ALLOC_ENUM_VALUES               = LITHIUM_ENABLE && true;  // to complicated to be switchable

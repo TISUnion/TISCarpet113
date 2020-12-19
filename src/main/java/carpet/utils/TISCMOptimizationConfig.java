@@ -9,7 +9,7 @@ package carpet.utils;
 @SuppressWarnings("PointlessBooleanExpression")
 public class TISCMOptimizationConfig
 {
-	private static final boolean TISCM_OPTIMIZATION_ENABLE = true;
+	private static final boolean TISCM_OPTIMIZATION_ENABLE = false;
 
 	public static final boolean CACHE_BOUNDING_BOX_LIST_CREATION  = TISCM_OPTIMIZATION_ENABLE && true;
 	public static final boolean LARGER_TILE_ENTITY_LIST           = TISCM_OPTIMIZATION_ENABLE && true;
