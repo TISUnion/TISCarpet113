@@ -215,11 +215,11 @@ Set the random size ratio in `collectBlocksAndDamageEntities` to a fixed value
 
 More exactly, it replaces the return value of `nextFloat()` for blast ray strength randomization, so the random blast strength of the explosion becomes predictable
 
-The value should be between 0.0 and 1.0. Set it to -1.0 to disable overriding
+The value should be between `0.0` and `1.0`, where `0.0` is for minimum possible strength and `1.0` is for maxmium possible strength. Set it to `-1.0` to disable overriding
 
 Default: `-1.0`
 
-Options: `-1.0, `0.0`, `0.5`, `1.0`
+Options: `-1.0`, `0.0`, `0.5`, `1.0`
 
 Categories: creative
 
@@ -394,7 +394,7 @@ Categories: creative
 
 Optimize entity colliding with entities with hard hit box
 
-Use a separate list to store entities, that have a hard hit box including boat and shulker, in a chunk
+It uses an extra separate list to store entities, that have a hard hit box including boat and shulker, in a chunk
 
 It reduces quite a lot of unnecessary iterating when an entity is moving and trying to search entities with hard hit box on the way, since the world is always not filled with boats and shulkers
 
@@ -627,8 +627,9 @@ The stat name is `break_bedrock` in `custom` catalogory
 
 Fixes for original CarpetMod
 
-- fix no username length limit with `/player` command (long name will make everyone cannot enter the server) 
-- remove lever modification ability from flippinCactus
+- Fixed no username length limit with `/player` command (long name will make everyone cannot enter the server) 
+- Removed lever modification ability from flippinCactus
+- Added an OP permission check for cheaty command `/player mount`
 
 -----
 

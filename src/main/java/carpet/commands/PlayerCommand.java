@@ -311,6 +311,22 @@ public class PlayerCommand
     private static int mount(CommandContext<CommandSource> context)
     {
         if (cantManipulate(context)) return 0;
+        // TISCM added permission for mount command
+        EntityPlayerMP sendingPlayer;
+        try
+        {
+            sendingPlayer = context.getSource().asPlayer();
+        }
+        catch (CommandSyntaxException e)
+        {
+            sendingPlayer = null;
+        }
+        if (sendingPlayer != null && !context.getSource().getServer().getPlayerList().canSendCommands(sendingPlayer.getGameProfile()))
+        {
+            Messenger.m(context.getSource(),"r Only OP players can use mount command");
+            return 0;
+        }
+        // TISCM ends
         getPlayer(context).actionPack.mount();
         return 1;
     }
