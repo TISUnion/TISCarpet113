@@ -422,6 +422,30 @@
 分类: optimization, experimental
 
 
+## drownedNavigatorMemoryLeakFix
+
+修复溺尸寻路 AI 引发的内存泄漏
+
+更多详情见 [MC-202246](https://bugs.mojang.com/browse/MC-202246)
+
+默认值: `false`
+
+选项: `false`, `true`
+
+分类: bugfix
+
+
+## creativeOpenShulkerBoxForcibly
+
+允许创造模式的玩家打开被阻挡的潜影盒
+
+默认值: `false`
+
+选项: `false`, `true`
+
+分类: creative
+
+
 ## YEET
 
 **警告**：所有的yeet选项都会改变原版的特性，它们的行为不会表现得跟原版一致！

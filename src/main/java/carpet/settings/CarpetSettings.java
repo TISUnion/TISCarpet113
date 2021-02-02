@@ -425,6 +425,19 @@ public class CarpetSettings
     )
     public static boolean optimizedFastEntityMovement = false;
 
+    @Rule(
+            desc = "Fixed memory leak caused by drowned path finding AI",
+            extra = "Check MC-202246 for details",
+            category = {BUGFIX}
+    )
+    public static boolean drownedNavigatorMemoryLeakFix = false;
+
+    @Rule(
+            desc = "Allow creative players to open a shulker block even if the shulker box is blocked",
+            category = {CREATIVE}
+    )
+    public static boolean creativeOpenShulkerBoxForcibly = false;
+
     // /$$$$$$$$ /$$$$$$  /$$$$$$   /$$$$$$  /$$      /$$
     //|__  $$__/|_  $$_/ /$$__  $$ /$$__  $$| $$$    /$$$
     //   | $$     | $$  | $$  \__/| $$  \__/| $$$$  /$$$$
@@ -848,6 +861,27 @@ public class CarpetSettings
             category = {CREATIVE}
     )
     public static boolean accurateBlockPlacement = false;
+
+    @Rule(
+            desc = "Sets the horizontal random angle on TNT for debugging of TNT contraptions",
+            extra = "Set to -1 for default behavior",
+            category = CREATIVE,
+            options = "-1.0",
+            validate = TNTAngleValidator.class
+    )
+    public static double hardcodeTNTangle = -1.0D;
+
+    private static class TNTAngleValidator extends Validator<Double> {
+        @Override
+        public Double validate(CommandSource source, ParsedRule<Double> currentRule, Double newValue, String string) {
+            return (newValue >= 0 && newValue < Math.PI * 2) || newValue == -1 ? newValue : null;
+        }
+
+        @Override
+        public String description() {
+            return "Must be between 0 and 2pi, or -1";
+        }
+    }
 
     // /$$     /$$/$$$$$$$$ /$$$$$$$$/$$$$$$$$
     //|  $$   /$$/ $$_____/| $$_____/__  $$__/
