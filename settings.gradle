@@ -1,7 +1,6 @@
 pluginManagement {
     repositories {
-        maven { url 'https://jitpack.io' }
-        maven { url 'https://maven.fallenbreath.me/tiscm13' }
+        maven { url = 'https://maven.fallenbreath.me/tiscm13' }
     }
     resolutionStrategy {
         eachPlugin {

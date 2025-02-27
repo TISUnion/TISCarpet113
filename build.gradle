@@ -2,11 +2,11 @@ buildscript {
     repositories {
 //        mavenLocal()
 //        maven { url "$projectDir/TISCM_libs" }
-//        maven { url 'https://maven.fallenbreath.me/releases' }
-//        maven { url 'http://files.minecraftforge.net/maven' }
+//        maven { url = 'https://maven.fallenbreath.me/releases' }
+//        maven { url = 'http://files.minecraftforge.net/maven' }
 //        jcenter()
         mavenCentral()
-        maven { url 'https://maven.fallenbreath.me/tiscm13' }
+        maven { url = 'https://maven.fallenbreath.me/tiscm13' }
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:3.0.23'  // newer version does not work
@@ -117,7 +117,7 @@ def projectMod = project(':' + settings.modname) {
 //        maven { url = 'https://maven.enginehub.org/repo' }  // worldedit
 //        maven { url = 'https://www.jitpack.io' }  // spark
 //        maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }  // spark dependency
-        maven { url 'https://maven.fallenbreath.me/tiscm13' }
+        maven { url = 'https://maven.fallenbreath.me/tiscm13' }
         mavenCentral()
     }
     patcher {
