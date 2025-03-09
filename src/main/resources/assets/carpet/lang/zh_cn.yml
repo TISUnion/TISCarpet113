@@ -12,6 +12,13 @@ rule:
     desc: 方块可放置时无视实体碰撞检测，也就是你可以将方块放在实体内
     extra:
       '0': 仅对创造模式玩家有效
+  blockStateParserFutureVersionInputCompact:
+    name: 方块状态解析器兼容未来版本输入
+    desc: 在命令解析过程中使用的 BlockStateParser 组件里，启用对未来版本方块 ID 的输入兼容
+    extra:
+      '0': 包含的映射：
+      '1': '- minecraft:oak_sign -> minecraft:sign'
+      '2': '- minecraft:smooth_stone_slab -> minecraft:stone_slab'
   cauldronBlockItemInteractFix:
     name: 炼药锅方块类物品交互修复
     desc: 让玩家可以对着填充有水的炼药锅放置方块

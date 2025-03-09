@@ -26,7 +26,7 @@ public class CarpetSettings
     public static final int SHULKERBOX_MAX_STACK_AMOUNT = 64;
     public static boolean isEpsActive = false;
 
-	private static class ValidateVoxelOpt extends Validator<Boolean>
+    private static class ValidateVoxelOpt extends Validator<Boolean>
     {
         @Override
         public Boolean validate(CommandSource source, ParsedRule<Boolean> currentRule, Boolean newValue, String string)
@@ -949,6 +949,17 @@ public class CarpetSettings
             strict = false
     )
     public static double spawnJockeyProbably = -1;
+
+    @Rule(
+            desc = "Enable the automatic future MC version compatibility mode on block states for the BlockStateParser which is used in command parsing",
+            extra = {
+                    "Included mappings:",
+                    "- minecraft:oak_sign -> minecraft:sign",
+                    "- minecraft:smooth_stone_slab -> minecraft:stone_slab",
+            },
+            category = {CREATIVE}
+    )
+    public static boolean blockStateParserFutureVersionInputCompact;
 
 
     // /$$$$$$$$ /$$$$$$  /$$$$$$   /$$$$$$  /$$      /$$
