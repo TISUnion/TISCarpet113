@@ -55,6 +55,5 @@ Gradle 项目:
 
 - 在 commit 你的代码前，记得 `genPatches`
 - 在切换 git 分支 / 从远端仓库拉取代码前，记得 `setup`
-- 除此之外，你需要从 [here](https://files.catbox.moe/xqp3xy.zip) 下载 TISCM_libs 并解压至工程文件夹中，因为有些依赖库提供者已经挂掉了
 
 参照: https://github.com/gnembon/carpetmod/blob/master/README.md
