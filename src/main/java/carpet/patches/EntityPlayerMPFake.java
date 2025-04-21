@@ -1,25 +1,20 @@
 package carpet.patches;
 
- import net.minecraft.entity.Entity;
- import net.minecraft.network.play.server.SPacketEntityHeadLook;
- import net.minecraft.network.play.server.SPacketEntityTeleport;
- import net.minecraft.network.play.server.SPacketPlayerListItem;
- import net.minecraft.server.MinecraftServer;
- import net.minecraft.server.management.PlayerInteractionManager;
- import com.mojang.authlib.GameProfile;
- import net.minecraft.tileentity.TileEntitySkull;
- import net.minecraft.util.DamageSource;
- import net.minecraft.util.math.Vec2f;
- import net.minecraft.util.math.Vec3d;
- import net.minecraft.util.text.TextComponentTranslation;
- import net.minecraft.world.WorldServer;
- import net.minecraft.entity.player.EntityPlayerMP;
- import net.minecraft.network.EnumPacketDirection;
-  
- import net.minecraft.world.GameType;
- import net.minecraft.world.dimension.DimensionType;
-
- import java.util.function.BiConsumer;
+import com.mojang.authlib.GameProfile;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.network.EnumPacketDirection;
+import net.minecraft.network.play.server.SPacketEntityHeadLook;
+import net.minecraft.network.play.server.SPacketEntityTeleport;
+import net.minecraft.network.play.server.SPacketPlayerListItem;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.management.PlayerInteractionManager;
+import net.minecraft.tileentity.TileEntitySkull;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.world.GameType;
+import net.minecraft.world.WorldServer;
+import net.minecraft.world.dimension.DimensionType;
 
 public class EntityPlayerMPFake extends EntityPlayerMP
 {
@@ -97,7 +92,7 @@ public class EntityPlayerMPFake extends EntityPlayerMP
     {
         //super.onKillCommand();
         //check for 1.14compatibility
-        this.getServer().addScheduledTask( () -> this.getServer().getPlayerList().playerLoggedOut(this) );
+        this.getServer().scheduleFutureTask$TISCM( () -> this.getServer().getPlayerList().playerLoggedOut(this) );
     }
 
     @Override
@@ -117,14 +112,14 @@ public class EntityPlayerMPFake extends EntityPlayerMP
     {
         //check for 1.14 compatibility
         super.onDeath(cause);
-        this.getServer().addScheduledTask( () -> this.getServer().getPlayerList().playerLoggedOut(this) );
+        this.getServer().scheduleFutureTask$TISCM( () -> this.getServer().getPlayerList().playerLoggedOut(this) );
     }
 
     @Override
     public Entity changeDimension(DimensionType p_212321_1_)
     {
         Entity res = super.changeDimension(p_212321_1_);
-        this.getServer().addScheduledTask( () -> clearInvulnerableDimensionChange());
+        this.getServer().scheduleFutureTask$TISCM( () -> clearInvulnerableDimensionChange());
         return res;
     }
 }

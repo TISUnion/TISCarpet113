@@ -435,7 +435,22 @@
      }
  
      public CrashReport addServerInfoToCrashReport(CrashReport report)
-@@ -1605,6 +1784,12 @@
+@@ -1585,6 +1764,14 @@
+         }
+     }
+ 
++    // TISCM: for fixing https://github.com/TISUnion/TISCarpet113/issues/30
++    public void scheduleFutureTask$TISCM(Runnable runnableToSchedule)
++    {
++        Callable<?> callable = Executors.callable(runnableToSchedule);
++        ListenableFutureTask<?> listenablefuturetask = ListenableFutureTask.create(callable);
++        this.futureTaskQueue.add(listenablefuturetask);
++    }
++
+     public ListenableFuture<Object> addScheduledTask(Runnable runnableToSchedule)
+     {
+         Validate.notNull(runnableToSchedule);
+@@ -1605,6 +1792,12 @@
      {
          return this.serverTime;
      }
@@ -448,7 +463,7 @@
  
      public Thread getServerThread()
      {
-@@ -1639,6 +1824,7 @@
+@@ -1639,6 +1832,7 @@
          }
          else
          {
@@ -456,7 +471,7 @@
              this.getPlayerList().saveAllPlayerData();
              this.resourcePacks.reloadPacksFromFinders();
              this.loadDataPacks(this.getWorld(DimensionType.OVERWORLD).getWorldInfo());
-@@ -1825,4 +2011,28 @@
+@@ -1825,4 +2019,28 @@
              return 0;
          }
      }
