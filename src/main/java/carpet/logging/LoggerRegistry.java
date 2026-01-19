@@ -3,6 +3,7 @@ package carpet.logging;
 import carpet.logging.commandblock.CommandBlockLogger;
 import carpet.logging.ghostPlayer.GhostPlayerLogger;
 import carpet.logging.instantfall.InstantFallLogger;
+import carpet.logging.itemNoClip.ItemNoClipLogger;
 import carpet.logging.lifetime.LifeTimeHUDLogger;
 import carpet.logging.microtiming.utils.MicroTimingStandardCarpetLogger;
 import carpet.logging.phantom.PhantomLogger;
@@ -51,6 +52,7 @@ public class LoggerRegistry
     public static boolean __phantom;
     public static boolean __threadstone;
     public static boolean __instantFall;
+    public static boolean __itemNoClip;
     public static boolean __playerCheckLight;
     public static boolean __ghostPlayer;
     public static boolean __portalCache;
@@ -83,6 +85,7 @@ public class LoggerRegistry
         registerLogger("phantom", PhantomLogger.getInstance().createCarpetLogger());
         registerLogger(ThreadstoneLogger.NAME, ThreadstoneLogger.getInstance().createCarpetLogger());
         registerLogger(InstantFallLogger.NAME, InstantFallLogger.getInstance().createCarpetLogger());
+        registerLogger(ItemNoClipLogger.NAME, ItemNoClipLogger.getInstance().createCarpetLogger());
         registerLogger(PlayerCheckLightLogger.NAME, PlayerCheckLightLogger.getInstance().createCarpetLogger());
         registerLogger(GhostPlayerLogger.NAME, GhostPlayerLogger.getInstance().createCarpetLogger());
         registerLogger(PortalCacheLogger.NAME, PortalCacheLogger.getInstance().createCarpetLogger());

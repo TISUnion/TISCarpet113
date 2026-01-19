@@ -594,6 +594,8 @@ logger:
         hint: 点击以启用
   instantfall:
     flag_changed: 瞬时落沙flag已切换为%s
+  itemNoClip:
+    become_no_clip: '%1$s已进入noClip状态 @ %2$s'
   portalCache:
     added: '地狱门缓存已创建: %s -> %s'
     added_hover: |-

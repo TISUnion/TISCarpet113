@@ -1,6 +1,6 @@
 --- a/net/minecraft/entity/item/EntityItem.java
 +++ b/net/minecraft/entity/item/EntityItem.java
-@@ -2,6 +2,12 @@
+@@ -2,6 +2,13 @@
  
  import java.util.UUID;
  import javax.annotation.Nullable;
@@ -8,12 +8,13 @@
 +import carpet.commands.lifetime.removal.LiteralRemovalReason;
 +import carpet.commands.lifetime.removal.MobPickupRemovalReason;
 +import carpet.helpers.InventoryHelper;
++import carpet.logging.itemNoClip.ItemNoClipLogger;
 +import carpet.settings.CarpetSettings;
 +import net.minecraft.block.BlockShulkerBox;
  import net.minecraft.entity.Entity;
  import net.minecraft.entity.EntityType;
  import net.minecraft.entity.MoverType;
-@@ -9,6 +15,7 @@
+@@ -9,6 +16,7 @@
  import net.minecraft.init.Items;
  import net.minecraft.init.SoundEvents;
  import net.minecraft.item.Item;
@@ -21,7 +22,7 @@
  import net.minecraft.item.ItemStack;
  import net.minecraft.nbt.NBTTagCompound;
  import net.minecraft.nbt.NBTUtil;
-@@ -37,6 +44,12 @@
+@@ -37,6 +45,12 @@
      private UUID owner;
      public float hoverStart = (float)(Math.random() * Math.PI * 2.0D);
  
@@ -34,7 +35,7 @@
      public EntityItem(World worldIn)
      {
          super(EntityType.ITEM, worldIn);
-@@ -57,6 +70,15 @@
+@@ -57,6 +71,15 @@
      {
          this(worldIn, x, y, z);
          this.setItem(stack);
@@ -50,7 +51,24 @@
      }
  
      protected boolean canTriggerWalking()
-@@ -166,6 +188,7 @@
+@@ -106,7 +129,16 @@
+             }
+             else
+             {
++                // TISCM itemNoClip logger
++                boolean wasNoClip = this.noClip;
++
+                 this.noClip = this.pushOutOfBlocks(this.posX, (this.getBoundingBox().minY + this.getBoundingBox().maxY) / 2.0D, this.posZ);
++
++                // TISCM itemNoClip logger
++                if (!wasNoClip && this.noClip)
++                {
++                    ItemNoClipLogger.getInstance().onItemBecomeNoClip(this);
++                }
+             }
+ 
+             this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
+@@ -166,6 +198,7 @@
  
              if (!this.world.isRemote && this.age >= 6000)
              {
@@ -58,7 +76,7 @@
                  this.remove();
              }
          }
-@@ -205,8 +228,12 @@
+@@ -205,8 +238,12 @@
              {
                  if (this.age != -32768 && other.age != -32768)
                  {
@@ -72,7 +90,7 @@
                          return false;
                      }
                      else if (itemstack1.hasTag() ^ itemstack.hasTag())
-@@ -229,12 +256,23 @@
+@@ -229,12 +266,23 @@
                      {
                          return false;
                      }
@@ -96,7 +114,7 @@
                          this.remove();
                          return true;
                      }
-@@ -282,6 +320,7 @@
+@@ -282,6 +330,7 @@
  
              if (this.health <= 0)
              {
@@ -104,7 +122,7 @@
                  this.remove();
              }
  
-@@ -354,6 +393,12 @@
+@@ -354,6 +403,12 @@
  
                  if (itemstack.isEmpty())
                  {
@@ -117,7 +135,7 @@
                      this.remove();
                      itemstack.setCount(i);
                  }
-@@ -460,4 +505,44 @@
+@@ -460,4 +515,44 @@
          this.setInfinitePickupDelay();
          this.age = 5999;
      }
