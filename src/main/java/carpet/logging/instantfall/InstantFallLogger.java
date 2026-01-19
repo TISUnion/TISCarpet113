@@ -1,13 +1,14 @@
 package carpet.logging.instantfall;
 
 import carpet.logging.AbstractLogger;
+import carpet.logging.LoggerRegistry;
 import carpet.utils.Messenger;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 
 public class InstantFallLogger extends AbstractLogger
 {
-	public static final String NAME = "instantfall";
+	public static final String NAME = "instantFall";
 	private static final InstantFallLogger INSTANCE = new InstantFallLogger();
 
 	public InstantFallLogger()
@@ -22,6 +23,10 @@ public class InstantFallLogger extends AbstractLogger
 
 	public void onInstantFallFlagFlipped(boolean currentFlag)
 	{
+		if (!LoggerRegistry.__instantFall)
+		{
+			return;
+		}
 		this.log(() -> new ITextComponent[]{Messenger.formatting(
 				advTr("flag_changed", "InstantFall flag changed to %s", Messenger.bool(currentFlag)),
 				TextFormatting.LIGHT_PURPLE, TextFormatting.ITALIC

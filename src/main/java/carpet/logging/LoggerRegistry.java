@@ -50,7 +50,7 @@ public class LoggerRegistry
     public static boolean __savestate;
     public static boolean __phantom;
     public static boolean __threadstone;
-    public static boolean __instantfall;
+    public static boolean __instantFall;
     public static boolean __playerCheckLight;
     public static boolean __ghostPlayer;
     public static boolean __portalCache;
