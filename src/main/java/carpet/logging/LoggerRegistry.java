@@ -11,6 +11,7 @@ import carpet.logging.playerCheckLight.PlayerCheckLightLogger;
 import carpet.logging.portalCache.PortalCacheLogger;
 import carpet.logging.threadstone.ThreadstoneLogger;
 import carpet.logging.tickwarp.TickWarpHUDLogger;
+import carpet.logging.zombieReinforce.ZombieReinforceLogger;
 import carpet.settings.CarpetSettings;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumDyeColor;
@@ -56,6 +57,7 @@ public class LoggerRegistry
     public static boolean __playerCheckLight;
     public static boolean __ghostPlayer;
     public static boolean __portalCache;
+    public static boolean __zombieReinforce;
 
     public static void initLoggers()
     {
@@ -89,6 +91,7 @@ public class LoggerRegistry
         registerLogger(PlayerCheckLightLogger.NAME, PlayerCheckLightLogger.getInstance().createCarpetLogger());
         registerLogger(GhostPlayerLogger.NAME, GhostPlayerLogger.getInstance().createCarpetLogger());
         registerLogger(PortalCacheLogger.NAME, PortalCacheLogger.getInstance().createCarpetLogger());
+        registerLogger(ZombieReinforceLogger.NAME, ZombieReinforceLogger.getInstance().createCarpetLogger());
     }
 
     /**

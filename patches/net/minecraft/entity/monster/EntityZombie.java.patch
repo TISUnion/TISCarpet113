@@ -1,17 +1,18 @@
 --- a/net/minecraft/entity/monster/EntityZombie.java
 +++ b/net/minecraft/entity/monster/EntityZombie.java
-@@ -5,6 +5,10 @@
+@@ -5,6 +5,11 @@
  import java.util.List;
  import java.util.UUID;
  import javax.annotation.Nullable;
 +
 +import carpet.CarpetServer;
 +import carpet.commands.lifetime.spawning.LiteralSpawningReason;
++import carpet.logging.zombieReinforce.ZombieReinforceLogger;
 +import carpet.settings.CarpetSettings;
  import net.minecraft.block.Block;
  import net.minecraft.block.state.IBlockState;
  import net.minecraft.entity.CreatureAttribute;
-@@ -283,6 +287,12 @@
+@@ -283,6 +288,12 @@
                  flag = false;
              }
  
@@ -24,16 +25,36 @@
              if (flag)
              {
                  this.setFire(8);
-@@ -368,6 +378,8 @@
+@@ -356,6 +367,8 @@
+                 int k = MathHelper.floor(this.posZ);
+                 EntityZombie entityzombie = new EntityZombie(this.world);
+ 
++                boolean reinforceSuccess = false;  // TISCM zombieReinforce logger
++
+                 for (int l = 0; l < 50; ++l)
+                 {
+                     int i1 = i + MathHelper.nextInt(this.rand, 7, 40) * MathHelper.nextInt(this.rand, -1, 1);
+@@ -368,6 +381,9 @@
  
                          if (!this.world.isAnyPlayerWithinRangeAt((double)i1, (double)j1, (double)k1, 7.0D) && this.world.checkNoEntityCollision(entityzombie, entityzombie.getBoundingBox()) && this.world.isCollisionBoxesEmpty(entityzombie, entityzombie.getBoundingBox()) && !this.world.containsAnyLiquid(entityzombie.getBoundingBox()))
                          {
 +                            entityzombie.recordSpawning(LiteralSpawningReason.ZOMBIE_REINFORCE);  // TISCM lifetime tracker
++                            reinforceSuccess = true;  // TISCM zombieReinforce logger
 +
                              this.world.spawnEntity(entityzombie);
                              entityzombie.setAttackTarget(entitylivingbase);
                              entityzombie.onInitialSpawn(this.world.getDifficultyForLocation(new BlockPos(entityzombie)), (IEntityLivingData)null, (NBTTagCompound)null);
-@@ -548,7 +560,10 @@
+@@ -377,6 +393,9 @@
+                         }
+                     }
+                 }
++
++                // TISCM zombieReinforce logger
++                ZombieReinforceLogger.getInstance().onZombieReinforceAttempt(this, entityzombie, reinforceSuccess);
+             }
+ 
+             return true;
+@@ -548,7 +567,10 @@
  
          if (entityLivingData == null)
          {
@@ -45,7 +66,7 @@
          }
  
          if (entityLivingData instanceof EntityZombie.GroupData)
-@@ -559,6 +574,9 @@
+@@ -559,6 +581,9 @@
              {
                  this.setChild(true);
  
@@ -55,7 +76,7 @@
                  if ((double)this.world.rand.nextFloat() < 0.05D)
                  {
                      List<EntityChicken> list = this.world.getEntitiesWithinAABB(EntityChicken.class, this.getBoundingBox().grow(5.0D, 3.0D, 5.0D), EntitySelectors.IS_STANDALONE);
-@@ -570,7 +588,7 @@
+@@ -570,7 +595,7 @@
                          this.startRiding(entitychicken);
                      }
                  }
