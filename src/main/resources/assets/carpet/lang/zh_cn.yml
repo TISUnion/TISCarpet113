@@ -217,6 +217,12 @@ rule:
     extra:
       '0': 将其设为0以让矿车忽略速度，像船一样总能将附件实体载上车
       '1': 将其设为NaN以让矿车永远不能把实体载上车
+  mobSpawnWithArmorDiamondOverrideChance:
+    name: 怪物装备钻石化几率
+    desc: 启用时，若怪物刷新上带有盔甲，那么会有给定概率把其盔甲材质覆盖为钻石
+    extra:
+      '0': 若其值为1，则怪物若刷新时带有盔甲，则盔甲一定是钻石材质
+      '1': 将其值设置为<=0以禁用该规则
   opPlayerNoCheat:
     name: op玩家不准作弊
     desc: 禁用部分指令以避免op玩家意外地作弊

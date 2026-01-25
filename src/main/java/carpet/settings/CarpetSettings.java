@@ -961,6 +961,16 @@ public class CarpetSettings
     )
     public static boolean blockStateParserFutureVersionInputCompact;
 
+    @Rule(
+            desc = "If enabled, if a mob spawns with armor, there's the given chance to override the armor type to diamond",
+            extra = {
+                    "If set to 1, the mob will always spawn with diamond armor if it spawns with armor",
+                    "Set it to <=0 to disable this rule",
+            },
+            category = {CREATIVE},
+            options = {"-1", "0.5", "1"}
+    )
+    public static double mobSpawnWithArmorDiamondOverrideChance = -1;
 
     // /$$$$$$$$ /$$$$$$  /$$$$$$   /$$$$$$  /$$      /$$
     //|__  $$__/|_  $$_/ /$$__  $$ /$$__  $$| $$$    /$$$

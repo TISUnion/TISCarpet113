@@ -103,8 +103,16 @@
          {
              ItemStack itemstack = this.getItemStackFromSlot(entityequipmentslot);
              float f = this.getDropChance(entityequipmentslot);
-@@ -973,7 +1005,8 @@
+@@ -971,9 +1003,16 @@
+                 ++i;
+             }
  
++            // TISCM mobSpawnWithArmorDiamondOverrideChance
++            if (CarpetSettings.mobSpawnWithArmorDiamondOverrideChance > 0 && this.rand.nextFloat() < CarpetSettings.mobSpawnWithArmorDiamondOverrideChance)
++            {
++                i = 4;
++            }
++
              boolean flag = true;
  
 -            for (EntityEquipmentSlot entityequipmentslot : EntityEquipmentSlot.values())
@@ -113,7 +121,7 @@
              {
                  if (entityequipmentslot.getSlotType() == EntityEquipmentSlot.Type.ARMOR)
                  {
-@@ -1136,7 +1169,8 @@
+@@ -1136,7 +1175,8 @@
              this.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, EnchantmentHelper.addRandomEnchantment(this.rand, this.getHeldItemMainhand(), (int)(5.0F + f * (float)this.rand.nextInt(18)), false));
          }
  
@@ -123,7 +131,7 @@
          {
              if (entityequipmentslot.getSlotType() == EntityEquipmentSlot.Type.ARMOR)
              {
-@@ -1174,6 +1208,9 @@
+@@ -1174,6 +1214,9 @@
  
      public void enablePersistence()
      {
@@ -133,7 +141,7 @@
          this.persistenceRequired = true;
      }
  
-@@ -1447,10 +1484,16 @@
+@@ -1447,10 +1490,16 @@
          float f = (float)this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).getValue();
          int i = 0;
  
