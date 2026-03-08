@@ -955,6 +955,7 @@ public class CarpetSettings
             extra = {
                     "Included mappings:",
                     "- minecraft:oak_sign -> minecraft:sign",
+                    "- minecraft:oak_wall_sign -> minecraft:wall_sign",
                     "- minecraft:smooth_stone_slab -> minecraft:stone_slab",
             },
             category = {CREATIVE}
